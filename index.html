@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body>
+    <main>
+      <h1>Home page</h1>
+    </main>
+
+    <button onclick="activeNotifications()">Notification</button>
+
+    <script>
+      function showNotification() {
+        const notification = new Notification("New message for ayoub", {
+          body: "Hey mate, how are you? You want to catch up son?",
+          icon:'https://play-lh.googleusercontent.com/MmLHNN4_lwIN7kMG7XWnOxSYbEju-FBMEn8oDj4Xt8t9EnnH6S6GQeMHJDWpGfeDOSpM' 
+        });
+      }
+
+      console.log(Notification.permission);
+
+      const activeNotifications = () => {
+        if (Notification.permission === "granted") {
+        showNotification();
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            showNotification();
+          }
+        });
+      }
+      }
+    </script>
+  </body>
+</html>
